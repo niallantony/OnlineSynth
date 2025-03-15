@@ -52,7 +52,7 @@
 	];
 
 	let { eventBus } = $props();
-	let notes = $state([]);
+	let notes = [];
 
 	const sendNote = (note) => {
 		notes.push(note);
