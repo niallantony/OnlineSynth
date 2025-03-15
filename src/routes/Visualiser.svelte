@@ -4,7 +4,7 @@
 	let played = $state([]);
 
 	const updateDisplay = (data) => {
-		played = data.notes;
+		played = data.notes.map((note) => note.name);
 	};
 
 	eventBus.subscribe('signalchange', updateDisplay);
