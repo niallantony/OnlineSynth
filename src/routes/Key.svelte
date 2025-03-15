@@ -1,5 +1,9 @@
 <script>
-	let { sendNote, removeNote, note } = $props();
+	let { sendNote, releaseNote, note } = $props();
 </script>
 
-<button onmousedown={() => sendNote(note)} onmouseup={() => removeNote(note)}>{note}</button>
+<button
+	onpointerdown={() => sendNote(note)}
+	onpointerup={() => releaseNote(note)}
+	onpointerout={() => releaseNote(note)}>{note}</button
+>

@@ -1,7 +1,6 @@
 <script>
-	import KeyBoard from './KeyBoard.svelte';
+	import Board from './Board.svelte';
 </script>
 
 <h1>Welcome to Online Synth</h1>
-
-<KeyBoard />
+<Board />
