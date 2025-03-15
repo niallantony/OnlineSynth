@@ -17,7 +17,6 @@ export const SignalChain = (eventBus) => {
 	};
 
 	const emitSignalChange = () => {
-		console.log(pressedKeys);
 		eventBus.publish('signalchange', { notes: [...pressedKeys] });
 	};
 
