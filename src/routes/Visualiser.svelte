@@ -1,14 +1,20 @@
 <script>
-	let { eventBus } = $props();
+	let { input } = $props();
 
 	let played = $state([]);
 
 	const updateDisplay = (data) => {
-		played = data.notes.map((note) => note.name);
+		played = data.map((note) => note.name);
 	};
 
-	eventBus.subscribe('signalchange', updateDisplay);
+	const passSignal = (data) => {
+		updateDisplay(data);
+	};
+
+	input.attachOutput({ passSignal });
 </script>
 
-<h2>Currently playing:</h2>
-<p>{played}</p>
+<div class="visualiser">
+	<h2>Currently playing:</h2>
+	<p>{played}</p>
+</div>

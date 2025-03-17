@@ -1,14 +1,23 @@
 <script>
 	import KeyBoard from './KeyBoard.svelte';
 	import Visualiser from './Visualiser.svelte';
-	import { SignalChain } from '$lib/SignalChain';
-	import { EventBus } from '$lib/EventBus';
 	import Amplifier from './Amplifier.svelte';
+	import { onMount } from 'svelte';
+	import { NOTES, KeyboardModule, AmplifierModule } from '$lib/modules';
+	import { getAudioContext } from '$lib/audioCtx';
+	import { derived } from 'svelte/store';
 
-	const eventBus = EventBus();
-	const signalChain = SignalChain(eventBus);
+	let audioCtx;
+	let amp;
+	onMount(() => {
+		audioCtx = getAudioContext();
+		amp = AmplifierModule(audioCtx);
+		keyboard.attachOutput(amp);
+	});
+
+	const keyboard = KeyboardModule();
 </script>
 
-<KeyBoard {eventBus} />
-<Visualiser {eventBus} />
-<Amplifier {eventBus} />
+<KeyBoard {NOTES} sendNote={keyboard.sendNote} releaseNote={keyboard.releaseNote} />
+<Visualiser input={keyboard} />
+<Amplifier />
